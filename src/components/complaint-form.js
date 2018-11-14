@@ -1,6 +1,6 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
-import {required , nonEmpty, valLength , valNum } from './validators'; 
+import {required , nonEmpty, valLength , valNum } from '../validators'; 
 
 export class ComplaintForm extends React.Component {
   onSubmit(values) {
@@ -9,7 +9,9 @@ export class ComplaintForm extends React.Component {
   render() {
     return (
 
-      <form>
+      <form
+        onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
+      >
         <label>Your Tracking Number:</label>
           <Field
           name="trackingNumber" 
@@ -38,8 +40,8 @@ export class ComplaintForm extends React.Component {
             <option value="Other">Other </option>
           </Field>
           <label>Give More Details (optional) </label>
-          <Field name="details" type="text-area" id="details" component="input"/>
-        <button type="submit">Submit</button>
+          <Field name="details" type="text" id="details" component="input"/>
+        <button type="submit disabled={this.props.pristine || this.props.submitting}">Submit</button>
       </form>
     );
   }
