@@ -1,0 +1,39 @@
+import React from 'react';
+import { reduxForm, Field } from 'redux-form';
+
+export class ComplaintForm extends React.Component {
+  onSubmit(values) {
+    console.log(values);
+  }
+  render() {
+    return (
+
+      <form>
+        <label>Your Tracking Number:</label>
+          <Field name="trackingNumber" id="trackingNumber" label="tracking number" type="text" component="input" />
+          <label>What is your issue? </label>
+          <Field name="issue" id="issue" type="select" component="select">
+            <option value="My delivery hasn't arrived">
+              My delivery hasn't arrived
+            </option>
+            <option value="Wrong Item Was Delivered">
+              Wrong Item Was Delivered
+            </option>
+            <option value="Part of My Order Was Missing">
+              Part of My Order Was Missing
+            </option>
+            <option value="Damaged Order">Damaged Order</option>
+            <option value="Other">Other </option>
+          </Field>
+          <label>Give More Details (optional) </label>
+          <Field name="details" type="text-area" id="details" component="input"/>
+        <button type="submit">Submit</button>
+      </form>
+    );
+  }
+}
+
+
+export default reduxForm({
+  form: 'complaint'
+})(ComplaintForm);
