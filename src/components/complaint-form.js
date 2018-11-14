@@ -1,5 +1,6 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
+import {required , nonEmpty, valLength , valNum } from './validators'; 
 
 export class ComplaintForm extends React.Component {
   onSubmit(values) {
@@ -10,9 +11,20 @@ export class ComplaintForm extends React.Component {
 
       <form>
         <label>Your Tracking Number:</label>
-          <Field name="trackingNumber" id="trackingNumber" label="tracking number" type="text" component="input" />
+          <Field
+          name="trackingNumber" 
+          id="trackingNumber" 
+          label="tracking number" 
+          type="text"
+          component="input" 
+          validate = {[required, nonEmpty, valLength, valNum]}/>
           <label>What is your issue? </label>
-          <Field name="issue" id="issue" type="select" component="select">
+          <Field 
+          name="issue" 
+          id="issue" 
+          type="select" 
+          component="select"
+          validate = {[required, nonEmpty]}>
             <option value="My delivery hasn't arrived">
               My delivery hasn't arrived
             </option>
